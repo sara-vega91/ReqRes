@@ -1,0 +1,22 @@
+<div class="login-page">
+
+    <form class="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+        <!-- FALTAN
+                - Mensajes de las validaciones -->
+
+        <label>Email:</label>
+        <input type="email" formControlName="email" placeholder="example@example.com">
+
+
+        <label> Password:</label>
+        <input type="password" formControlName="password" placeholder="password">
+
+        <div class="actions">
+            <button type="submit" [disabled]="loginForm.invalid">LOGIN</button>
+            <button type="button" (click)="navigateTo()">REGISTER</button>
+        </div>
+
+    </form>
+
+</div>
