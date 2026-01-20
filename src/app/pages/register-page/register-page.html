@@ -1,25 +1,23 @@
 <div class="register-page">
 
-    <form class="register-form">
+    <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
         <label> PHOTO PROFILE:</label>
-        <input type="file">
+        <input type="file" formControlName="avatar">
 
         <label> USERNAME:</label>
-        <input type="text" placeholder="Username">
+        <input type="text" placeholder="Username" formControlName="username">
 
         <label> EMAIL:</label>
-        <input type="email" placeholder="examen@example.com">
+        <input type="email" placeholder="examen@example.com" formControlName="email">
 
         <label> PASSWORD:</label>
-        <input type="password" placeholder="Password">
+        <input type="password" placeholder="Password" formControlName="password">
 
         <div class="actions">
-            <button type="submit"> REGISTRAR</button>
+            <button type="submit" [disabled]="registerForm.invalid"> REGISTRAR</button>
             <button type="button" (click)="cancel()"> CANCELAR</button>
         </div>
-
-
 
     </form>
 
