@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
 
   navigateTo() {
     //Navegación a la página de registro
-    this.router.navigate(['register']);
+    this.router.navigate(['/register']);
   }
 
   // Envía el formulario, si el formulario no es válido, maracmos todos los campos como tocados (futuras validaciones)
