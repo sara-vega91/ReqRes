@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-nav-bar-component',
@@ -8,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class NavBarComponent {
 
+  // @Output - envíamos la sección seleccionada al padre.
+
+  @Output() sectionChange = new EventEmitter<'users' | 'resources'>();
+
+  selectSelection(section: 'users' | 'resources') {
+    this.sectionChange.emit(section); //Emite el evento al padre
+  }
 }
