@@ -28,14 +28,11 @@ export class RegisterPage implements OnInit {
   }
 
 
-
-
   cancel() {
     this.registerForm.reset();
   }
 
-
-
+  // si login y bd, modificar
   onSubmit() {
 
     if (this.registerForm.invalid) {

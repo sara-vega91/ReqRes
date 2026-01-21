@@ -1,0 +1,13 @@
+.navBar {
+
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid black;
+    padding: 1rem;
+    box-sizing: border-box;
+
+    width: 240px; //Ancho típico de una barra de navegación
+    height: 75vh; //Altura completa de la ventana del navegador
+
+}

@@ -1,0 +1,14 @@
+.dashboard-layout {
+    display: flex;
+    height: 100vh;
+    gap: 1rem;
+
+
+    .nav-bar {
+        flex-shrink: 0;
+    }
+
+    .list-content {
+        flex: 1;
+    }
+}

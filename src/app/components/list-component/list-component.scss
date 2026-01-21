@@ -1,0 +1,11 @@
+.listPage {
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid black;
+    padding: 1rem;
+    box-sizing: border-box;
+
+    width: 600px;
+    height: 75vh;
+}
