@@ -13,7 +13,14 @@ export class NavBarComponent {
 
   @Output() sectionChange = new EventEmitter<'users' | 'resources'>();
 
+  //Avisa al padre del logout
+  @Output() logout = new EventEmitter<void>();
+
   selectSelection(section: 'users' | 'resources') {
     this.sectionChange.emit(section); //Emite el evento al padre
+  }
+
+  onLogout(){
+    this.logout.emit();
   }
 }

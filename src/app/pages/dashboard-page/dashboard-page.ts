@@ -4,10 +4,11 @@ import { ListComponent } from "../../components/list-component/list-component";
 import { RestService } from '../../services/rest/rest-service';
 import { Users } from '../../model/users-model';
 import { UnknownResource } from '../../model/unknownResource-model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-page',
-  imports: [NavBarComponent, ListComponent],
+  imports: [NavBarComponent, ListComponent,],
   templateUrl: './dashboard-page.html',
   styleUrl: './dashboard-page.scss',
 })
@@ -15,6 +16,7 @@ export class DashboardPage implements OnInit {
 
 
   private readonly restService = inject(RestService);
+  private readonly router = inject(Router);
 
   //Sección actualmente seleccionada por defecto
   currentSection: 'users' | 'resources' = 'users';
@@ -43,10 +45,10 @@ export class DashboardPage implements OnInit {
     //Depende de la sección, llamamos al servicio correspondiente
     if (section === 'users') {
       this.loadUsers();
-      console.log('Users: ', this.users)
+      
     } else {
       this.loadResources();
-      console.log('Resources: ', this.resources)
+      
     }
   }
 
@@ -64,6 +66,10 @@ export class DashboardPage implements OnInit {
     this.restService.getResources().subscribe(resources => {
       this.resources = resources;
     });
+  }
+
+  onLogout(){
+    this.router.navigate(['/login'])
   }
 
 }

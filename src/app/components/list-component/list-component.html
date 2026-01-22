@@ -1,11 +1,15 @@
 <div class="listPage">
-
+  <!--        LISTA
     <div>
         @if (section === 'users') {
         @for(user of users; track user.id ){
         <div>
+            <ul>
+                <il>
             {{user.first_name}} {{user.last_name}}
         </div>
+        <il>
+            <ul>
         }
         }
     </div>
@@ -20,4 +24,29 @@
         }
     </div>
 
+</div> -->
+
+  <!--        TABLA           -->
+  <table>
+    <thead>
+      <tr>
+        <!-- Aquí se crean los headers-->
+        @for (col of columns; track col.key) {
+          <th>{{ col.label }}</th>
+        }
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- Aquí se crean las fiilas usando tableData -->
+      @for (item of tableData; track $index) {
+        <tr>
+          <!-- Aquí se crean las celdas dinámicamente -->
+          @for (col of columns; track col.key) {
+            <td>{{ item[col.key] }}</td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
 </div>

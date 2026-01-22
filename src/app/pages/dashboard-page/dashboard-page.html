@@ -1,12 +1,15 @@
 <div class="dashboard-layout">
+  <div class="nav-bar">
+    <!-- navBar emite la sección que el usuario selecciona -->
+    <app-nav-bar-component (sectionChange)="onSectionChange($event)" (logout)="onLogout()">
+    </app-nav-bar-component>
+  </div>
 
-    <div class="nav-bar">
-        <!-- navBar emite la sección que el usuario selecciona -->
-        <app-nav-bar-component (sectionChange)="onSectionChange($event)"></app-nav-bar-component>
-    </div>
-
-    <div class="list-content">
-        <app-list-component [users]="users" [resources]="resources" [section]="currentSection"></app-list-component>
-    </div>
-
+  <div class="list-content">
+    <app-list-component
+      [users]="users"
+      [resources]="resources"
+      [section]="currentSection"
+    ></app-list-component>
+  </div>
 </div>
