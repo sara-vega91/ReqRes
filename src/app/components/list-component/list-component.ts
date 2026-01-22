@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Users } from '../../model/users-model';
+import { UnknownResource } from '../../model/unknownResource-model';
 
 @Component({
   selector: 'app-list-component',
@@ -8,4 +10,7 @@ import { Component } from '@angular/core';
 })
 export class ListComponent {
 
+  @Input() users: Users[] = [];
+  @Input() resources: UnknownResource[] = [];
+  @Input() section: 'users' | 'resources' = 'users'
 }

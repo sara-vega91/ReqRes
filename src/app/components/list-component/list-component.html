@@ -1,1 +1,23 @@
-<div class="listPage"></div>
+<div class="listPage">
+
+    <div>
+        @if (section === 'users') {
+        @for(user of users; track user.id ){
+        <div>
+            {{user.first_name}} {{user.last_name}}
+        </div>
+        }
+        }
+    </div>
+
+    <div>
+        @if (section === 'resources') {
+        @for(resource of resources; track resource.id){
+        <div>
+            {{resource.name}}
+        </div>
+        }
+        }
+    </div>
+
+</div>
