@@ -9,3 +9,35 @@
     width: 600px;
     height: 75vh;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse; //evita dobles bordes
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.95rem;
+
+    thead {
+        background-color: #f3f4f6;
+    }
+
+    th {
+        text-align: left;
+        padding: 0.75rem 1rem;
+        font-weight: 600;
+        color: #374151;
+        border-bottom: 2px solid #e5e7eb;
+    }
+
+    td {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    tbody tr {
+        transition: background-color 0.2s ease;
+    }
+
+    tbody tr:hover {
+        background-color: #f9fafb;
+    }
+}

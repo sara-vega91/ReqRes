@@ -22,8 +22,7 @@
 
 
         #users-btn {
-            background-color: lightblue;
-            border-radius: 50pxs;
+            background-color: #f3f4f6;
             border: none;
             padding: 0.5rem;
             cursor: pointer;
@@ -32,14 +31,13 @@
         }
 
         #users-btn:hover {
-            background-color: deepskyblue;
+            background-color: rgb(146, 151, 153);
             color: white;
-            font-weight: bold;
             font-size: 1rem;
         }
 
         #resources-btn {
-            background-color: lightblue;
+            background-color: #f3f4f6;
             border: none;
             padding: 0.5rem;
             cursor: pointer;
@@ -48,9 +46,8 @@
         }
 
         #resources-btn:hover {
-            background-color: deepskyblue;
+            background-color: rgb(146, 151, 153);
             color: white;
-            font-weight: bold;
             font-size: 1rem;
         }
     }

@@ -1,14 +1,24 @@
 .dashboard-layout {
     display: flex;
-    height: 100vh;
     gap: 1rem;
 
-
     .nav-bar {
-        flex-shrink: 0;
+        width: 200px;
     }
 
-    .list-content {
+    .main-content {
+        display: flex;
+        flex-direction: column;
         flex: 1;
+        align-items: center;
+
+        .main-content app-list-component {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .main-content app-pagination-component {
+            margin-top: 1rem;
+        }
     }
 }

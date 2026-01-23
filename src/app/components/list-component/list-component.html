@@ -32,7 +32,7 @@
       <tr>
         <!-- Aquí se crean los headers-->
         @for (col of columns; track col.key) {
-          <th>{{ col.label }}</th>
+        <th>{{ col.label }}</th>
         }
       </tr>
     </thead>
@@ -40,12 +40,13 @@
     <tbody>
       <!-- Aquí se crean las fiilas usando tableData -->
       @for (item of tableData; track $index) {
-        <tr>
-          <!-- Aquí se crean las celdas dinámicamente -->
-          @for (col of columns; track col.key) {
-            <td>{{ item[col.key] }}</td>
-          }
-        </tr>
+      <!-- componente nuevo que guardará la id del user/resource para la posterior edición -->
+      <tr (click)="item.id">
+        <!-- Aquí se crean las celdas dinámicamente -->
+        @for (col of columns; track col.key) {
+        <td>{{ item[col.key] }}</td>
+        }
+      </tr>
       }
     </tbody>
   </table>

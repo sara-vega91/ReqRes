@@ -1,0 +1,37 @@
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+
+
+    button {
+        background-color: #f3f4f6;
+        color: white;
+        border: none;
+        padding: 0.25rem 1.5rem;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background-color 0.2s, transform 0.1s;
+
+        &:hover {
+            background-color: rgb(146, 151, 153);
+            transform: translateY(-1px);
+        }
+
+        &:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    }
+
+
+
+
+
+    span {
+        font-size: 0.9rem;
+
+    }
+}

@@ -5,10 +5,11 @@ import { RestService } from '../../services/rest/rest-service';
 import { Users } from '../../model/users-model';
 import { UnknownResource } from '../../model/unknownResource-model';
 import { Router } from '@angular/router';
+import { PaginationComponent } from "../../components/pagination-component/pagination-component";
 
 @Component({
   selector: 'app-dashboard-page',
-  imports: [NavBarComponent, ListComponent,],
+  imports: [NavBarComponent, ListComponent, PaginationComponent],
   templateUrl: './dashboard-page.html',
   styleUrl: './dashboard-page.scss',
 })
@@ -23,52 +24,74 @@ export class DashboardPage implements OnInit {
 
   users: Users[] = [];
   resources: UnknownResource[] = [];
+  currentPage: number = 1;
+  totalPages: number = 1;
 
 
 
   ngOnInit(): void {
-    this.loadUsers();
-    this.loadResources();
-
+    //Carga inicial, sección por defecto
+    this.loadSection(this.currentSection, this.currentPage);
   }
 
 
-
-  /* Método que recibe la sección del NavBar
-  @param section - 'users' o 'resources'
-  */
+  /**
+   * Método llamado por el NavBar al seleccionar sección
+   * @param section - 'users' | 'resources'
+   */
 
   onSectionChange(section: 'users' | 'resources') {
-    //Guardamos la sección actual para que ListComp sepa que renderizar
-    this.currentSection = section;
+    this.currentPage = 1; //reiniciamos la página al cambiar de sección
+    this.loadSection(section, this.currentPage);
+  }
 
-    //Depende de la sección, llamamos al servicio correspondiente
+
+  /**
+    * Método genérico para cargar una sección y página
+    * @param section - 'users' | 'resources'
+    * @param page - número de página a cargar
+    */
+
+
+  private loadSection(section: 'users' | 'resources', page: number) {
+    this.currentSection = section;
+    this.currentPage = page;
+
     if (section === 'users') {
-      this.loadUsers();
-      
+      this.restService.getUsers(page).subscribe(res => {
+        this.users = res.data; //usamos res.data porque la api devuelve objeto con metadata
+        this.totalPages = res.total_pages;
+      });
     } else {
-      this.loadResources();
-      
+      this.restService.getResources(page).subscribe(res => {
+        this.resources = res.data;
+        this.totalPages = res.total_pages;
+      });
+    }
+  }
+
+  // Página siguiente
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.loadSection(this.currentSection, this.currentPage + 1);
+
     }
   }
 
 
-  // métodos para cargar users o resources desde el restService
+  // Página anterior
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.loadSection(this.currentSection, this.currentPage - 1);
 
-  private loadUsers() {
-    this.restService.getUsers().subscribe(users => {
-      this.users = users;
-      console.log(users);
-    });
+
+    }
   }
 
-  private loadResources() {
-    this.restService.getResources().subscribe(resources => {
-      this.resources = resources;
-    });
-  }
 
-  onLogout(){
+
+
+  onLogout() {
     this.router.navigate(['/login'])
   }
 
