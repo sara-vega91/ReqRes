@@ -1,19 +1,25 @@
 <div class="dashboard-layout">
-
   <div class="nav-bar">
     <!-- navBar emite la sección que el usuario selecciona -->
     <app-nav-bar-component (sectionChange)="onSectionChange($event)" (logout)="onLogout()">
     </app-nav-bar-component>
   </div>
 
+  <div class="main-content">
+    <!-- lista + paginación -->
 
-  <div class=main-content> <!-- lista + paginación -->
+    <app-list-component
+      [users]="users"
+      [resources]="resources"
+      [section]="currentSection"
+    ></app-list-component>
 
-    <app-list-component [users]="users" [resources]="resources" [section]="currentSection"></app-list-component>
-
-    <app-pagination-component [currentPage]="currentPage" [totalPages]="totalPages" (nextPage)="nextPage()"
-      (prevPage)="previousPage()"> </app-pagination-component>
-
+    <app-pagination-component
+      [currentPage]="currentPage"
+      [totalPages]="totalPages"
+      (nextPage)="onNextPage()"
+      (prevPage)="onPreviousPage()"
+    >
+    </app-pagination-component>
   </div>
-
 </div>

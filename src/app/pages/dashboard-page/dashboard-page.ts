@@ -55,34 +55,38 @@ export class DashboardPage implements OnInit {
 
   private loadSection(section: 'users' | 'resources', page: number) {
     this.currentSection = section;
-    this.currentPage = page;
+    
 
     if (section === 'users') {
       this.restService.getUsers(page).subscribe(res => {
-        this.users = res.data; //usamos res.data porque la api devuelve objeto con metadata
-        this.totalPages = res.total_pages;
+        this.users = res.data;
+        this.totalPages = res.total_pages; //usamos res.data porque la api devuelve objeto con metadata
+        this.currentPage = page;
+        console.log(';users', res.data, res.total_pages)
       });
     } else {
       this.restService.getResources(page).subscribe(res => {
         this.resources = res.data;
         this.totalPages = res.total_pages;
+        this.currentPage = page;
+        console.log('resources', res.data, res.total_pages)
       });
     }
   }
 
   // Página siguiente
-  nextPage() {
+  onNextPage() {
     if (this.currentPage < this.totalPages) {
-      this.loadSection(this.currentSection, this.currentPage + 1);
+      this.loadSection(this.currentSection, this.currentPage +1);
 
     }
   }
 
 
   // Página anterior
-  previousPage() {
+  onPreviousPage() {
     if (this.currentPage > 1) {
-      this.loadSection(this.currentSection, this.currentPage - 1);
+      this.loadSection(this.currentSection, this.currentPage -1);
 
 
     }

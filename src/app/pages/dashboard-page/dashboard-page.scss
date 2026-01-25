@@ -1,24 +1,28 @@
 .dashboard-layout {
     display: flex;
     gap: 1rem;
+    justify-content: center;
+    padding: 1rem;
 
     .nav-bar {
         width: 200px;
+        height: fit-content;
     }
 
     .main-content {
         display: flex;
         flex-direction: column;
-        flex: 1;
         align-items: center;
+        flex: 0;
+        
 
-        .main-content app-list-component {
-            width: 100%;
+        app-list-component {
+            
             max-width: 800px;
         }
 
-        .main-content app-pagination-component {
-            margin-top: 1rem;
+        app-pagination-component {
+            margin-top: 1rem;            
         }
     }
 }
