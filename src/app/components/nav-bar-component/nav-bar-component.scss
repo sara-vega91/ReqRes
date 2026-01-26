@@ -45,7 +45,7 @@
         }
 
         #resources-btn:hover {
-            background-color: rgb(146, 151, 153);
+            background-color: #595959;
             color: white;
             font-size: 1rem;
         }
@@ -61,7 +61,7 @@
         #logout-btn {
 
             display: inline-block;
-            background-color: rgb(184, 29, 29);
+            background-color: rgb(2, 2, 2);
             border-radius: 999px;
             border: none;
             padding: 0.75rem 1.2rem;
@@ -75,7 +75,7 @@
 
 
             &:hover {
-                background-color: rgb(220, 53, 69);
+                background-color: rgb(0, 0, 0);
                 transform: scaleX(0.55); // se “estrecha” suavemente
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
             }

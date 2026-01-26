@@ -7,7 +7,7 @@
 
 
     button {
-        background-color: #f3f4f6;
+        background-color: #000000;
         color: white;
         border: none;
         padding: 0.25rem 1.5rem;
@@ -16,19 +16,16 @@
         transition: background-color 0.2s, transform 0.1s;
 
         &:hover {
-            background-color: rgb(146, 151, 153);
+            background-color: #595959;
+            color: white;
             transform: translateY(-1px);
         }
 
         &:disabled {
-            background-color: #ccc;
+            background-color: #f3f4f6;
             cursor: not-allowed;
         }
     }
-
-
-
-
 
     span {
         font-size: 0.9rem;
