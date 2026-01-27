@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Users } from '../../model/users-model';
 import { UnknownResource } from '../../model/unknownResource-model';
@@ -16,7 +16,8 @@ export class EditModalComponent implements OnChanges {
   @Input() item: Users | UnknownResource | null = null;
   @Input() section!: 'users' | 'resources';
 
-
+  @Output() save = new EventEmitter<any>();
+  @Output() cancel = new EventEmitter<void>();
 
 
   private readonly fb = inject(FormBuilder);
@@ -51,5 +52,15 @@ export class EditModalComponent implements OnChanges {
         pantone_value: [this.item.pantone_value || '']
       });
     }
+  }
+
+  onSave(){
+    if(this.editForm.valid){
+      this.save.emit(this.editForm.value);
+    }
+  }
+
+  onCancel(){
+    this.cancel.emit();
   }
 }

@@ -1,42 +1,59 @@
 <div class="edit-modal">
-    <div class="modal-card">
-        <form [formGroup]="editForm">
+  <div class="modal-card">
+    <form [formGroup]="editForm">
+      <div class="users-form">
+        <!-- Formulario para Users -->
+        @if (section === 'users') {
+          <div class="field">
+            <label> Avatar URL </label>
+            <input type="text" formControlName="avatar" />
+          </div>
 
-            <div class="users-form">
-                <!-- Formulario para Users -->
-                @if (section === 'users') {
-                <label> Avatar URL </label>
-                <input type="text" formControlName="avatar">
+          <div class="field">
+            <label> Name: </label>
+            <input type="text" formControlName="first_name" />
+          </div>
 
-                <label> Name: </label>
-                <input type="text" formControlName="first_name">
+          <div class="field">
+            <label> Last name:</label>
+            <input type="text" formControlName="last_name" />
+          </div>
 
-                <label> Last name:</label>
-                <input type="text" formControlName="last_name">
+          <div class="field">
+            <label> Email:</label>
+            <input type="email" formControlName="email" />
+          </div>
+        }
+      </div>
 
-                <label> Email:</label>
-                <input type="email" formControlName="email">
-                }
-            </div>
+      <div class="resources-form">
+        <!-- Formuario para Resources -->
+        @if (section === 'resources') {
+          <div class="field">
+            <label>Name:</label>
+            <input type="text" formControlName="name" />
+          </div>
 
+          <div class="field">
+            <label>Year: </label>
+            <input type="number" formControlName="year" />
+          </div>
 
-            <div class="resources-form">
-                <!-- Formuario para Resources -->
-                @if(section === 'resources'){
-                <label>Name:</label>
-                <input type="text" formControlName="name">
+          <div class="field">
+            <label>Color:</label>
+            <input type="text" formControlName="color" />
+          </div>
 
-                <label>Year: </label>
-                <input type="number" formControlName="year">
-
-                <label>Color:</label>
-                <input type="text" formControlName="color">
-
-                <label>Pantone value:</label>
-                <input type="text" formControlName="pantone_value">
-                }
-
-            </div>
-        </form>
-    </div>
+          <div class="field">
+            <label>Pantone value:</label>
+            <input type="text" formControlName="pantone_value" />
+          </div>
+        }
+      </div>
+      <div class="action">
+        <button type="submit" (click)="onSave()">SAVE</button>
+        <button type="button" (click)="onCancel()">CANCEL</button>
+      </div>
+    </form>
+  </div>
 </div>
