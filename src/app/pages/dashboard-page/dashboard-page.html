@@ -8,18 +8,17 @@
   <div class="main-content">
     <!-- lista + paginación -->
 
-    <app-list-component
-      [users]="users"
-      [resources]="resources"
-      [section]="currentSection"
-    ></app-list-component>
+    <app-list-component (rowSelected)="onRowSelected($event)" [users]="users" [resources]="resources"
+      [section]="currentSection"></app-list-component>
 
-    <app-pagination-component
-      [currentPage]="currentPage"
-      [totalPages]="totalPages"
-      (nextPage)="onNextPage()"
-      (prevPage)="onPreviousPage()"
-    >
+    <app-pagination-component [currentPage]="currentPage" [totalPages]="totalPages" (nextPage)="onNextPage()"
+      (prevPage)="onPreviousPage()">
     </app-pagination-component>
+  </div>
+
+  <div class="edit-modal-card">
+    @if(isEditModalOpen){
+    <app-edit-modal-component [item]="selectedItem" [section]="currentSection"></app-edit-modal-component>
+    }
   </div>
 </div>

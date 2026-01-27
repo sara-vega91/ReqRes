@@ -6,15 +6,15 @@ import { Users } from '../../model/users-model';
 import { UnknownResource } from '../../model/unknownResource-model';
 import { Router } from '@angular/router';
 import { PaginationComponent } from "../../components/pagination-component/pagination-component";
+import { EditModalComponent } from "../../components/edit-modal-component/edit-modal-component";
 
 @Component({
   selector: 'app-dashboard-page',
-  imports: [NavBarComponent, ListComponent, PaginationComponent],
+  imports: [NavBarComponent, ListComponent, PaginationComponent, EditModalComponent],
   templateUrl: './dashboard-page.html',
   styleUrl: './dashboard-page.scss',
 })
 export class DashboardPage implements OnInit {
-
 
   private readonly restService = inject(RestService);
   private readonly router = inject(Router);
@@ -26,6 +26,8 @@ export class DashboardPage implements OnInit {
   resources: UnknownResource[] = [];
   currentPage: number = 1;
   totalPages: number = 1;
+  selectedItem: Users | UnknownResource | null = null; //por defecto aparece ninguno clickado
+  isEditModalOpen: boolean = false; //por defecto
 
 
 
@@ -82,7 +84,6 @@ export class DashboardPage implements OnInit {
     }
   }
 
-
   // Página anterior
   onPreviousPage() {
     if (this.currentPage > 1) {
@@ -92,7 +93,13 @@ export class DashboardPage implements OnInit {
     }
   }
 
+  // Guardar fila seleccionada en el list
+  onRowSelected(item: Users | UnknownResource) {
+    this.selectedItem = item;
 
+    //Abrimos el modal
+    this.isEditModalOpen = true;
+  }
 
 
   onLogout() {

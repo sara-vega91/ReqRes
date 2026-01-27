@@ -41,7 +41,7 @@
       <!-- Aquí se crean las fiilas usando tableData -->
       @for (item of tableData; track $index) {
       <!-- componente nuevo que guardará la id del user/resource para la posterior edición -->
-      <tr (click)="item.id">
+      <tr (click)=selectRow(item)>
         <!-- Aquí se crean las celdas dinámicamente -->
         @for (col of columns; track col.key) {
         <td>{{ item[col.key] }}</td>

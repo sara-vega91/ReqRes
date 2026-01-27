@@ -17,9 +17,12 @@ type Column = {
 })
 export class ListComponent implements OnInit, OnChanges {
 
+
   @Input() users: Users[] = [];
   @Input() resources: UnknownResource[] = [];
   @Input() section: 'users' | 'resources' = 'users'
+
+  @Output() rowSelected = new EventEmitter<Users | UnknownResource>();
 
 
 
@@ -36,6 +39,8 @@ export class ListComponent implements OnInit, OnChanges {
     this.loadData();
   }
 
+
+  // Métodos para cargar los datos en la tabla
   loadData() {
     if (this.section === 'users') {
       this.columns = [
@@ -57,9 +62,16 @@ export class ListComponent implements OnInit, OnChanges {
         { key: 'pantone_value', label: 'Pantone' }
       ];
       this.tableData = this.resources;
-
     }
   }
+
+  //Método que llama cada fila al hacer click
+  selectRow(item: Users | UnknownResource) {
+    this.rowSelected.emit(item);
+
+  }
 }
+
+
 
 

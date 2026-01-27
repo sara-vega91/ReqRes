@@ -1,1 +1,42 @@
-<p>details-modal-component works!</p>
+<div class="edit-modal">
+    <div class="modal-card">
+        <form [formGroup]="editForm">
+
+            <div class="users-form">
+                <!-- Formulario para Users -->
+                @if (section === 'users') {
+                <label> Avatar URL </label>
+                <input type="text" formControlName="avatar">
+
+                <label> Name: </label>
+                <input type="text" formControlName="first_name">
+
+                <label> Last name:</label>
+                <input type="text" formControlName="last_name">
+
+                <label> Email:</label>
+                <input type="email" formControlName="email">
+                }
+            </div>
+
+
+            <div class="resources-form">
+                <!-- Formuario para Resources -->
+                @if(section === 'resources'){
+                <label>Name:</label>
+                <input type="text" formControlName="name">
+
+                <label>Year: </label>
+                <input type="number" formControlName="year">
+
+                <label>Color:</label>
+                <input type="text" formControlName="color">
+
+                <label>Pantone value:</label>
+                <input type="text" formControlName="pantone_value">
+                }
+
+            </div>
+        </form>
+    </div>
+</div>
