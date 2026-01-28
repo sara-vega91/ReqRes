@@ -1,9 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, observable, Observable } from 'rxjs';
 import { Users } from '../../model/users-model';
 import { UnknownResource } from '../../model/unknownResource-model';
 import { PaginatedResponse } from '../../model/paginatedResponse';
+import { response } from 'express';
 
 
 
@@ -62,4 +63,38 @@ export class RestService {
         map(response => response.data)
       );
   }
+
+  // Actualizar algún campo
+  updateUser(id: number, user: Partial<Users>): Observable<Users> {
+    return this.http.patch<{ data: Users }>(`${this.apiUrl}/users/${id}`, user)
+      .pipe(
+        map(response => response.data)
+      );
+  }
+  
+  // Actualizar todos los campos
+  changeUser(id: number, user: Partial<Users>): Observable<Users> {
+    return this.http.put<{ data: Users }>(`${this.apiUrl}/users/${id}`, user)
+      .pipe(
+        map(response => response.data)
+      );
+  }
+
+  // Crear user
+  createUser(userData: Partial<Users>): Observable<Users>{
+    return this.http.post<{data: Users}>(`${this.apiUrl}/users`, userData)
+    .pipe(
+      map(response => response.data)
+    );
+  }
 }
+
+/* FORMAS DE NO SELECCIONAR TODOS LOS CAMPOS DE UN MODELO
+      - Partial => más rápida y flexible
+      - Omit => más estricta
+            Ej:
+              type CreateUser = Omit<Users, 'id'>;
+              
+              createUser(data: CreateUser): Observable<Users>{
+                return this.http.post<Users>(`${this.apiUrl}/users`, data);
+              } */

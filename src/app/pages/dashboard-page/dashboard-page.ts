@@ -102,6 +102,39 @@ export class DashboardPage implements OnInit {
   }
 
 
+  //Guardar datos
+  onSaveEdit(formData: Users){
+    if(!this.selectedItem?.id) return;
+
+    const userId = this.selectedItem.id;
+    
+    // Patch
+    this.restService.updateUser(userId, formData)
+    .subscribe({
+      next:() => {
+        this.users = this.users.map(user =>
+          user.id === userId ? { ...user, ...formData} : user
+          );
+          alert('User updated');
+          this.closeModal();
+      },
+      error: (err) => {
+        console.log('Error to update user', err);
+      }
+    });
+   }
+
+  onCancelEdit(){
+    this.closeModal();
+  }
+
+  // Cerrar modal
+  closeModal(){
+    this.isEditModalOpen = false;
+    this.selectedItem = null;
+  }
+
+
   onLogout() {
     this.router.navigate(['/login'])
   }
