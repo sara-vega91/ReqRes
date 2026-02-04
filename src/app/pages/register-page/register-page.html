@@ -1,28 +1,22 @@
 <div class="register-page">
+  <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <!-- Mensajes de validaciones -->
 
-    <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <label> PHOTO PROFILE:</label>
+    <input type="file" formControlName="avatar" />
 
-        <!-- Mensajes de validaciones -->
+    <label> USERNAME:</label>
+    <input type="text" placeholder="Username" formControlName="username" />
 
-        <label> PHOTO PROFILE:</label>
-        <input type="file" formControlName="avatar">
+    <label> EMAIL:</label>
+    <input type="email" placeholder="examen@example.com" formControlName="email" />
 
-        <label> USERNAME:</label>
-        <input type="text" placeholder="Username" formControlName="username">
+    <label> PASSWORD:</label>
+    <input type="password" placeholder="Password" formControlName="password" />
 
-        <label> EMAIL:</label>
-        <input type="email" placeholder="examen@example.com" formControlName="email">
-
-        <label> PASSWORD:</label>
-        <input type="password" placeholder="Password" formControlName="password">
-
-        <div class="actions">
-            <button type="submit" [disabled]="registerForm.invalid"> REGISTRAR</button>
-            <button type="button" (click)="cancel()"> CANCELAR</button>
-        </div>
-
-    </form>
-
-
-
+    <div class="action">
+      <button type="submit" [disabled]="registerForm.invalid">REGISTER</button>
+      <button type="button" (click)="cancel()">CANCEL</button>
+    </div>
+  </form>
 </div>

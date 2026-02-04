@@ -15,9 +15,11 @@ export class EditModalComponent implements OnChanges {
   // Nos traemos los modelos de Users y UnknowResource
   @Input() item: Users | UnknownResource | null = null;
   @Input() section!: 'users' | 'resources';
+  
 
   @Output() save = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<void>();
+  @Input() isModalOpen: boolean = false;
 
 
   private readonly fb = inject(FormBuilder);

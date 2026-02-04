@@ -23,6 +23,7 @@ export class ListComponent implements OnInit, OnChanges {
   @Input() section: 'users' | 'resources' = 'users'
 
   @Output() rowSelected = new EventEmitter<Users | UnknownResource>();
+  @Output() addButton = new EventEmitter<Users | UnknownResource>();
 
 
 
@@ -45,9 +46,9 @@ export class ListComponent implements OnInit, OnChanges {
     if (this.section === 'users') {
       this.columns = [
         { key: 'id', label: 'ID' },
-        { key: 'first_name', label: 'Nombre' },
-        { key: 'last_name', label: 'Apellido' },
-        { key: 'email', label: 'Email' },
+        { key: 'first_name', label: 'NAME' },
+        { key: 'last_name', label: 'SURNAME' },
+        { key: 'email', label: 'EMAIL' },
       ];
       this.tableData = this.users;
 
@@ -56,10 +57,10 @@ export class ListComponent implements OnInit, OnChanges {
     if (this.section === 'resources') {
       this.columns = [
         { key: 'id', label: 'ID' },
-        { key: 'name', label: 'Name' },
-        { key: 'year', label: 'Year' },
-        { key: 'color', label: 'Color' },
-        { key: 'pantone_value', label: 'Pantone' }
+        { key: 'name', label: 'NAME' },
+        { key: 'year', label: 'YEAR' },
+        { key: 'color', label: 'COLOR' },
+        { key: 'pantone_value', label: 'PANTONE' }
       ];
       this.tableData = this.resources;
     }
@@ -68,7 +69,10 @@ export class ListComponent implements OnInit, OnChanges {
   //Método que llama cada fila al hacer click
   selectRow(item: Users | UnknownResource) {
     this.rowSelected.emit(item);
+  }
 
+  onAddItem(){
+    this.addButton.emit();
   }
 }
 

@@ -13,6 +13,7 @@
       [users]="users"
       [resources]="resources"
       [section]="currentSection"
+      (addButton)="onAddItem()"
     ></app-list-component>
 
     <app-pagination-component
@@ -25,9 +26,10 @@
   </div>
 
   <div class="edit-modal-card">
-    @if (isEditModalOpen) {
+    @if (isModalOpen) {
       <app-edit-modal-component
         [item]="selectedItem"
+        [isModalOpen]="isModalOpen"
         [section]="currentSection"
         (save)="onSaveEdit($event)"
         (cancel)="onCancelEdit()"

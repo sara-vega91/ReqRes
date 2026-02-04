@@ -20,33 +20,41 @@
         border: 1px solid #ccc;
     }
 
-    .actions {
-        flex: 1;
-        padding: 0.75rem;
-        border-radius: 6px;
-        border: none;
-        font-weight: 600;
-        cursor: pointer;
+    .action{
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            ;
 
-    }
+            button {
+                padding: 0.6rem 1.5rem;
+                border: none;
+                border-radius: 8px;
+                font-size: 0.95rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s;
 
-    .actions button[type="submit"] {
-        background-color: #1976d2;
-        color: #ffffff;
+                &:first-child {
+                    background-color: #000000;
+                    color: white;
 
-        &:hover {
-            background-color: #155fa0;
-            transform: scale(1.02);
+                    &:hover {
+                        background-color: #333333;
+                        transform: translateY(-2px);
+                        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);                  
+                    }
+                }
+
+                &:last-child {
+                    background-color: #e0e0e0;
+                    color: #333;
+
+                    &:hover {                
+                    background-color: #d0d0d0;
+                    }
+                }
+            }
         }
     }
-
-    .actions button[type="button"] {
-        background-color: #e0e0e0;
-        color: #333;
-
-        &:hover {
-            background-color: #cfcfcf;
-            transform: scale(1.02);
-        }
-    }
-}

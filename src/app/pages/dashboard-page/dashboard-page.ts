@@ -7,6 +7,7 @@ import { UnknownResource } from '../../model/unknownResource-model';
 import { Router } from '@angular/router';
 import { PaginationComponent } from "../../components/pagination-component/pagination-component";
 import { EditModalComponent } from "../../components/edit-modal-component/edit-modal-component";
+import { format } from 'node:path';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -27,7 +28,7 @@ export class DashboardPage implements OnInit {
   currentPage: number = 1;
   totalPages: number = 1;
   selectedItem: Users | UnknownResource | null = null; //por defecto aparece ninguno clickado
-  isEditModalOpen: boolean = false; //por defecto
+  isModalOpen: boolean = false; //por defecto
 
 
 
@@ -97,31 +98,52 @@ export class DashboardPage implements OnInit {
   onRowSelected(item: Users | UnknownResource) {
     this.selectedItem = item;
 
-    //Abrimos el modal
-    this.isEditModalOpen = true;
+    //Abrimos el modal solo si estamos en la sección de users
+    if (this.currentSection === 'users') {
+      this.isModalOpen = true;
+    }
   }
 
 
   //Guardar datos
-  onSaveEdit(formData: Users){
-    if(!this.selectedItem?.id) return;
+  onSaveEdit(formData: Users | UnknownResource){
 
-    const userId = this.selectedItem.id;
-    
-    // Patch
-    this.restService.updateUser(userId, formData)
-    .subscribe({
-      next:() => {
-        this.users = this.users.map(user =>
-          user.id === userId ? { ...user, ...formData} : user
-          );
-          alert('User updated');
-          this.closeModal();
-      },
-      error: (err) => {
-        console.log('Error to update user', err);
+    //Users
+    if(this.currentSection == 'users'){
+
+      //Create
+      if(this.selectedItem == null){
+        this.restService.createUser(formData as Partial<Users>).subscribe({
+          next: (newUser) => {
+            this.users = [ ...this.users, newUser];
+            this.closeModal();
+          }
+        });
+        return;
       }
-    });
+
+      //update
+      const userId = (this.selectedItem as Users).id;
+      this.restService.updateUser(userId, formData as Partial<Users>).subscribe({
+        next: () =>{
+          this.users = this.users.map(user =>
+            user.id === userId ? {...user, ...formData} : user
+          );
+          this.closeModal();
+        }
+      });
+    }
+    
+    // Resource
+    if(this.currentSection == 'resources'){
+      this.restService.createResource(formData as Partial<UnknownResource>).subscribe({
+        next: (newResource) => {
+          this.resources = [...this.resources, newResource];
+          this.closeModal();
+        }
+      });
+      return;
+    }
    }
 
   onCancelEdit(){
@@ -130,13 +152,20 @@ export class DashboardPage implements OnInit {
 
   // Cerrar modal
   closeModal(){
-    this.isEditModalOpen = false;
+    this.isModalOpen = false;
     this.selectedItem = null;
   }
 
 
   onLogout() {
     this.router.navigate(['/login'])
+  }
+
+  onAddItem(){
+
+    this.selectedItem = null;
+    this.isModalOpen = true;
+
   }
 
 }

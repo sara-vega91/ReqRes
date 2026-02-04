@@ -40,6 +40,8 @@ export class RestService {
   }
 
 
+  // Obtener Users
+
   // Adaptamos el servicio a la paginación, para no tener que escribir la paginación de forma manual, lo mismo con resources
   getUsers(page: number = 1) {
     return this.getPaginated<Users>('users', page);
@@ -52,6 +54,8 @@ export class RestService {
       );
   }
 
+  // Obtener Resources
+
   getResources(page: number = 1) {
     return this.getPaginated<UnknownResource>('resources', page);
   }
@@ -63,30 +67,42 @@ export class RestService {
         map(response => response.data)
       );
   }
-
-  // Actualizar algún campo
-  updateUser(id: number, user: Partial<Users>): Observable<Users> {
-    return this.http.patch<{ data: Users }>(`${this.apiUrl}/users/${id}`, user)
-      .pipe(
-        map(response => response.data)
-      );
-  }
   
-  // Actualizar todos los campos
-  changeUser(id: number, user: Partial<Users>): Observable<Users> {
+  // Editar a un usuario
+  updateUser(id: number, user: Partial<Users>): Observable<Users> {
     return this.http.put<{ data: Users }>(`${this.apiUrl}/users/${id}`, user)
       .pipe(
         map(response => response.data)
       );
   }
 
-  // Crear user
+  // Crear user/resource
   createUser(userData: Partial<Users>): Observable<Users>{
     return this.http.post<{data: Users}>(`${this.apiUrl}/users`, userData)
     .pipe(
       map(response => response.data)
     );
   }
+
+  createResource(resourceData: Partial<UnknownResource>): Observable<UnknownResource>{
+    return this.http.post<{data: UnknownResource}>(`${this.apiUrl}/resource`, resourceData)
+    .pipe(
+      map(response => response.data)
+    );
+  }
+
+  
+  // Eliminar un usuario/ resource
+  deleteUser(id: number): Observable<void>{
+    return this.http.delete<void>(`${this.apiUrl}/users/${id}`);
+  }
+  
+  deleteResource(id: number): Observable<void>{
+    return this.http.delete<void>(`${this.apiUrl}/resource/${id}`);
+  }
+
+  
+  
 }
 
 /* FORMAS DE NO SELECCIONAR TODOS LOS CAMPOS DE UN MODELO

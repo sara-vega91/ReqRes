@@ -1,6 +1,5 @@
 <div class="pagination-container">
-    <button (click)="prevPage.emit()" [disabled]="currentPage === 1">Anterior</button>
-    <span> {{ currentPage }} de {{ totalPages}} </span>
-    <button (click)="nextPage.emit()" [disabled]="currentPage === totalPages">Siguiente</button>
-
+  <button (click)="prevPage.emit()" [disabled]="currentPage === 1">PREVIOUS</button>
+  <span> {{ currentPage }} de {{ totalPages }} </span>
+  <button (click)="nextPage.emit()" [disabled]="currentPage === totalPages">NEXT</button>
 </div>
